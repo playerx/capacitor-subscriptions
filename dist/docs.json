@@ -46,12 +46,12 @@
       },
       {
         "name": "purchaseProduct",
-        "signature": "(options: { productIdentifier: string; }) => Promise<PurchaseProductResponse>",
+        "signature": "(options: { productIdentifier: string; userId?: string; }) => Promise<PurchaseProductResponse>",
         "parameters": [
           {
             "name": "options",
             "docs": "",
-            "type": "{ productIdentifier: string; }"
+            "type": "{ productIdentifier: string; userId?: string | undefined; }"
           }
         ],
         "returns": "Promise<PurchaseProductResponse>",
@@ -59,6 +59,10 @@
           {
             "name": "param",
             "text": "options.productId contains the productIdentifier"
+          },
+          {
+            "name": "param",
+            "text": "options.userId contains userId linked to your system, must by UUID."
           }
         ],
         "docs": "Receives the product ID which the user wants to purchase and returns the transaction ID",

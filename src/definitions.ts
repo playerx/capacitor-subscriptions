@@ -15,8 +15,9 @@ export interface SubscriptionsPlugin {
   /**
    * Receives the product ID which the user wants to purchase and returns the transaction ID
    * @param options.productId contains the productIdentifier
+   * @param options.userId contains userId linked to your system, must by UUID.
    */
-  purchaseProduct(options: { productIdentifier: string }): Promise< PurchaseProductResponse >;
+  purchaseProduct(options: { productIdentifier: string, userId?: string }): Promise< PurchaseProductResponse >;
 
 
   getCurrentEntitlements(): Promise< CurrentEntitlementsResponse >;

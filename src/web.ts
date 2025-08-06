@@ -16,7 +16,7 @@ export class SubscriptionsWeb extends WebPlugin implements SubscriptionsPlugin {
       responseMessage: 'Incompatible with web',
     }
   }
-  async purchaseProduct(options: { productIdentifier: string }): Promise< PurchaseProductResponse > {
+  async purchaseProduct(options: { productIdentifier: string, userId?: string }): Promise< PurchaseProductResponse > {
     console.info(options);
     return {
       responseCode: -1,

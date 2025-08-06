@@ -42,10 +42,12 @@ public class SubscriptionsPlugin: CAPPlugin {
             call.reject("Must provide a productID")
             return
         }
+      
+        let userId = call.getString("userId")
 
         Task {
             do {
-                let response = await implementation.purchaseProduct(productIdentifier)
+              let response = await implementation.purchaseProduct(productIdentifier, userId: userId)
                 call.resolve(response)
             }
         }

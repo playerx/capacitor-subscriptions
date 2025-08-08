@@ -33,6 +33,7 @@ export interface SubscriptionsPlugin {
     listenerFunc: (response: AndroidPurchasedTrigger) => void,
   ): Promise<PluginListenerHandle>;
 
+  restorePurchases(): Promise<RestorePurchasesResponse>;
 }
 
 // Response data types
@@ -60,6 +61,10 @@ export interface LatestTransactionResponse {
 	responseCode: LatestTransactionResponseCode,
 	responseMessage: LatestTransactionResponseMessage,
 	data?: Transaction
+}
+
+export interface RestorePurchasesResponse {
+  completed: boolean
 }
 
 export type LatestTransactionResponseCode = -1 | 0 | 1 | 2 | 3

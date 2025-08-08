@@ -12,4 +12,5 @@ CAP_PLUGIN(SubscriptionsPlugin, "Subscriptions",
            CAP_PLUGIN_METHOD(manageSubscriptions, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getTrialStatus, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(startTrial, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(restorePurchases, CAPPluginReturnPromise);
 )

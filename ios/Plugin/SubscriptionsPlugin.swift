@@ -65,6 +65,23 @@ public class SubscriptionsPlugin: CAPPlugin {
 
 
     @available(iOS 15.0.0, *)
+    @objc func restorePurchases(_ call: CAPPluginCall) {
+        Task {
+            do {
+               try await AppStore.sync()
+               // Optionally alert the user that restore succeeded
+              
+              call.resolve(["completed": true])
+            } catch {
+              print("Restore purchases failed:", error)
+                 // Handle error (e.g., show alert)
+              call.resolve(["completed": false])
+            }
+        }
+    }
+
+    
+    @available(iOS 15.0.0, *)
     @objc func getLatestTransaction(_ call: CAPPluginCall) {
         guard let productIdentifier = call.getString("productIdentifier") else {
             call.reject("Must provide a productID")

@@ -297,7 +297,7 @@ public class Subscriptions {
 
     }
 
-    public void purchaseProduct(String productIdentifier, PluginCall call) {
+    public void purchaseProduct(String productIdentifier, String userId, PluginCall call) {
 
         JSObject response = new JSObject();
 
@@ -319,7 +319,7 @@ public class Subscriptions {
 
                         try {
                             ProductDetails productDetails = productDetailsList.get(0);
-                            BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+                            BillingFlowParams.Builder paramsBuilder = BillingFlowParams.newBuilder()
                                     .setProductDetailsParamsList(
                                             List.of(
                                                     BillingFlowParams.ProductDetailsParams.newBuilder()
@@ -327,8 +327,14 @@ public class Subscriptions {
                                                             .setOfferToken(Objects.requireNonNull(productDetails.getSubscriptionOfferDetails()).get(0).getOfferToken())
                                                             .build()
                                             )
-                                    )
-                                    .build();
+                                    );
+
+                            if (userId != null && !userId.isEmpty()) {
+                                paramsBuilder.setObfuscatedAccountId(userId);
+                            }
+
+                            BillingFlowParams billingFlowParams = paramsBuilder.build();
+
                             BillingResult result = billingClient.launchBillingFlow(this.activity, billingFlowParams);
 
                             Log.i("RESULT", result.toString());

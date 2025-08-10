@@ -116,12 +116,13 @@ public class SubscriptionsPlugin extends Plugin {
     public void purchaseProduct(PluginCall call) {
 
         String productIdentifier = call.getString("productIdentifier");
+        String userId = call.getString("userId", "");
 
         if(productIdentifier == null) {
             call.reject("Must provide a productID");
         }
 
-        implementation.purchaseProduct(productIdentifier, call);
+        implementation.purchaseProduct(productIdentifier, userId, call);
 
     }
 
